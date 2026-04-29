@@ -1,12 +1,12 @@
 import express from "express"
-import dotenv from "dotenv";
-import rutasGenerales from "./api/v1/routes/index.js"
+import rutasGenerales from "./server/v1/routes/index.js"
+//import dotenv from "dotenv";
 
 
-import { connectMongo } from "./api/v1/config/mongo.config.js";
-import { errorMiddleware } from "./api/v1/middleware/error.middleware.js";
+import { connectMongo } from "./server/v1/config/mongo.config.js";
+import { errorMiddleware } from "./server/v1/middleware/error.middleware.js";
 
-dotenv.config();
+//dotenv.config();
 
 connectMongo();
 
@@ -21,7 +21,7 @@ app.use(rutasGenerales);
 // Middleware validacion de errores
 app.use(errorMiddleware);
 
+export default app;
 
-
-const puerto = process.env.PORT || 3001;
-app.listen(puerto, () => console.log('Escuchando en puerto:', puerto)); 
+// const puerto = process.env.PORT || 3001;
+// app.listen(puerto, () => console.log('Escuchando en puerto:', puerto)); 

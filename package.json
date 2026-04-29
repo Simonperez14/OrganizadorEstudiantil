@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon --inspect ./src/app.js",
-    "dev": "node ./src/app.js"
+    "start": "nodemon --inspect ./src/server.js",
+    "dev": "node ./src/server.js"
   },
   "keywords": [],
   "author": "",
@@ -16,7 +16,6 @@
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
     "joi": "^18.1.2",
-    "joy": "^0.1.1",
     "jsonwebtoken": "^9.0.3",
     "mongoose": "^9.6.0"
   },
