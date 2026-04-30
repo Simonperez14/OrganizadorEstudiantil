@@ -1,9 +1,11 @@
 import { Router } from "express";
 import { validateBodyCreate, validateBodyLogin } from "../middleware/user.validate.middleware.js";
 import { loginController, registerController } from "../controllers/auth.controller.js";
+import limiter from "../middleware/rateLimiter.middleware.js";
+
 const v1AuthRoutes = Router();
 
-
+v1AuthRoutes.use(limiter);
 v1AuthRoutes.post("/register", validateBodyCreate, registerController); //esto es publico
 v1AuthRoutes.post("/login", validateBodyLogin, loginController); //esto es publico
 

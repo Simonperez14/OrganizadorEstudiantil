@@ -14,11 +14,19 @@ const subjectRepository = {
     // obtener todas las materias del usuario
     findAllByUser: async (userId, filters, page, limit) => {
         const query = { userId, ...filters };
-        const skip = (page - 1) * limit;
 
+        if(page == undefined) {
+            page = 1;
+        }
+        if(limit == undefined) {
+            limit = 10;
+        }
+        
+        const skip = (page - 1) * limit;
+        
         const [subjects, total] = await Promise.all([
             Subject.find(query)
-                .populate("categoryId", "name")  // nombre de la categoría
+                //.populate("categoryId", "name")  // nombre de la categoría
                 .skip(skip)
                 .limit(limit)
                 .sort({ createdAt: -1 }),

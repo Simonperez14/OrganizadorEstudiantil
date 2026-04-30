@@ -5,11 +5,12 @@ const LIMITE_PLAN_PLUS = 4;
 export const createSubject = async (subjectData, user) => {
 
     // solo los estudiantes pueden crear materias
+    /*
     if (user.role != "estudiante") {
         const error = new Error("Solo los estudiantes pueden crear materias");
         error.status = 403;
         throw error;
-    }
+    }*/
 
     // si el usuario es "plus", verificar que no supere el limite de 4
     if (user.plan === "plus") {
@@ -33,6 +34,9 @@ export const createSubject = async (subjectData, user) => {
 
 export const getAllSubjects = async (user, queryParams) => {
     const { page, limit, status, name, categoryId } = queryParams;
+
+    //page = page || 1;
+    //limit = limit || 10;
 
     // Construir filtros opcionales
     const filters = {};

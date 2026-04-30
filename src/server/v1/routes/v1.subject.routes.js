@@ -13,14 +13,15 @@ import {
     updateController,
     deleteController,
 } from "../controllers/subject.controller.js";
+import limiter from "../middleware/rateLimiter.middleware.js";
 
 const v1SubjectRoutes = Router();
 
-// todas las rutas requieren token y ser estudiante
+// todas las rutas requieren token
 v1SubjectRoutes.use(authMiddleware);
 //v1SubjectRoutes.use(roleMiddleware("estudiante"));
-
-v1SubjectRoutes.post("/", createController);
+v1SubjectRoutes.use(limiter);
+v1SubjectRoutes.post("/", validateBodyCreate, createController);
 v1SubjectRoutes.get("/", getAllController);
 v1SubjectRoutes.get("/:id", getByIdController);
 v1SubjectRoutes.put("/:id", validateBodyUpdate, updateController);
