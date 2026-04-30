@@ -20,7 +20,7 @@ const v1SubjectRoutes = Router();
 // todas las rutas requieren token
 v1SubjectRoutes.use(authMiddleware);
 //v1SubjectRoutes.use(roleMiddleware("estudiante"));
-v1SubjectRoutes.use(limiter);
+//v1SubjectRoutes.use(limiter);
 v1SubjectRoutes.post("/", validateBodyCreate, createController);
 v1SubjectRoutes.get("/", getAllController);
 v1SubjectRoutes.get("/:id", getByIdController);

@@ -14,7 +14,7 @@ import limiter from "../middleware/rateLimiter.middleware.js";
 const v1CategoryRoutes = Router();
 
 v1CategoryRoutes.use(authMiddleware);
-v1CategoryRoutes.use(limiter);
+//v1CategoryRoutes.use(limiter);
 // Lectura: cualquier usuario autenticado 
 v1CategoryRoutes.get("/", getAllController);
 v1CategoryRoutes.get("/:id", getByIdController);

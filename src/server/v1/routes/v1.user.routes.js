@@ -10,7 +10,7 @@ const v1UserRoutes = Router();
 
 //aca valido que la persona este con token valido con las credenciales necesarias
 v1UserRoutes.use(authMiddleware);
-v1UserRoutes.use(limiter);
+//v1UserRoutes.use(limiter);
 
 v1UserRoutes.get("/", roleMiddleware("admin"), getAllController);
 //v1UserRoutes.patch("/upgrade-plan", roleMiddleware("estudiante"), upgradePlanController);
