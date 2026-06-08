@@ -4,7 +4,8 @@ const categorySchema = new mongoose.Schema(
     {
         name: { type: String, required: true, unique: true, trim: true },
         description: { type: String, trim: true, default: "" },
-        imageUrl: { type: String, required: false }
+        imageUrl: { type: String, required: false },
+        imagePublicId:  { type: String, required: false, default: null },
     },
     { timestamps: true }
 );
