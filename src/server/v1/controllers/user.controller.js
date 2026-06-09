@@ -25,8 +25,9 @@ export const createController = async (req, res, next) => {
 export const upgradePlanController = async (req, res, next) => {
     try {
         const { userId } = req.user; // viene del token JWT
-        const usuario = await userService.upgradePlan(userId);
-        res.status(200).json({ usuario });
+        const { usuario, token } = await userService.upgradePlan(userId);
+        
+        res.status(200).json({ usuario, token });
     } catch (error) {
         next(error);
     }

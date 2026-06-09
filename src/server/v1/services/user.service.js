@@ -1,6 +1,6 @@
 
 import userRepository from "../repositories/user.repository.js";
-
+import jwt from "jsonwebtoken";
 
 export const getAllUser = async () => {
     return await userRepository.getAll();
@@ -30,7 +30,21 @@ export const upgradePlan = async (userId) => {
         throw error;
     }
 
-    return await userRepository.updatePlan(userId, "premium");
+    //return await userRepository.updatePlan(userId, "premium");
+    const usuarioActualizado = await userRepository.updatePlan(userId, "premium");
+    const token = jwt.sign(
+        {
+            userId: usuarioActualizado._id,
+            username: usuarioActualizado.username,
+            email: usuarioActualizado.email,
+            role: usuarioActualizado.role,
+            plan: usuarioActualizado.plan,
+        },
+        process.env.JWT_SECRET,
+        { expiresIn: "3h" }
+    );
+
+    return { usuario: usuarioActualizado, token };
 };
 
 
